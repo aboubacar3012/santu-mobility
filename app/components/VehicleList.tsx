@@ -1,16 +1,16 @@
 'use client';
 
-import { Vehicule } from '../page';
+import { Vehicle } from '../page';
 
-type VehiculeListProps = {
-  vehicules: Vehicule[];
-  onViewVehicule: (vehicule: Vehicule) => void;
-  onEditVehicule: (vehicule: Vehicule) => void;
+type VehicleListProps = {
+  vehicules: Vehicle[];
+  onViewVehicule: (vehicule: Vehicle) => void;
+  onEditVehicule: (vehicule: Vehicle) => void;
   onDeleteVehicule: (id: string) => void;
   onAddClick: () => void;
 };
 
-const getTypeIcon = (type: Vehicule['type']) => {
+const getTypeIcon = (type: Vehicle['type']) => {
   switch (type) {
     case 'voiture': return '🚗';
     case 'moto': return '🏍️';
@@ -19,7 +19,7 @@ const getTypeIcon = (type: Vehicule['type']) => {
   }
 };
 
-export default function VehiculeList({ vehicules, onViewVehicule, onEditVehicule, onDeleteVehicule, onAddClick }: VehiculeListProps) {
+export default function VehicleList({ vehicules, onViewVehicule, onEditVehicule, onDeleteVehicule, onAddClick }: VehicleListProps) {
   const handleDelete = (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
     if (confirm('Êtes-vous sûr de vouloir supprimer ce véhicule ?')) {

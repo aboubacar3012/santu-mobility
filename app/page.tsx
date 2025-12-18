@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import VehiculeList from './components/VehiculeList';
-import VehiculeForm from './components/VehiculeForm';
-import VehiculeDetail from './components/VehiculeDetail';
+import VehicleList from './components/VehicleList';
+import VehicleForm from './components/VehicleForm';
+import VehicleDetail from './components/VehicleDetail';
 import Dashboard from './components/Dashboard';
 
-export type Vehicule = {
+export type Vehicle = {
   id: string;
   numero: string;
   type: 'voiture' | 'moto' | 'camion' | 'autre';
@@ -36,7 +36,7 @@ export type Depense = {
 };
 
 export default function Home() {
-  const [vehicules, setVehicules] = useState<Vehicule[]>([
+  const [vehicules, setVehicules] = useState<Vehicle[]>([
     {
       id: '1',
       numero: 'VEH-001',
@@ -76,12 +76,12 @@ export default function Home() {
   ]);
 
   const [view, setView] = useState<'dashboard' | 'list' | 'add' | 'detail'>('dashboard');
-  const [selectedVehicule, setSelectedVehicule] = useState<Vehicule | null>(null);
-  const [editingVehicule, setEditingVehicule] = useState<Vehicule | null>(null);
+  const [selectedVehicule, setSelectedVehicule] = useState<Vehicle | null>(null);
+  const [editingVehicule, setEditingVehicule] = useState<Vehicle | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleAddVehicule = (vehicule: Omit<Vehicule, 'id' | 'recettes' | 'depenses'>) => {
-    const newVehicule: Vehicule = {
+  const handleAddVehicule = (vehicule: Omit<Vehicle, 'id' | 'recettes' | 'depenses'>) => {
+    const newVehicule: Vehicle = {
       ...vehicule,
       id: Date.now().toString(),
       recettes: [],
@@ -92,7 +92,7 @@ export default function Home() {
     setMobileMenuOpen(false);
   };
 
-  const handleUpdateVehicule = (updatedVehicule: Vehicule) => {
+  const handleUpdateVehicule = (updatedVehicule: Vehicle) => {
     setVehicules(vehicules.map(v => v.id === updatedVehicule.id ? updatedVehicule : v));
     setEditingVehicule(null);
     setView('list');
@@ -107,13 +107,13 @@ export default function Home() {
     }
   };
 
-  const handleViewVehicule = (vehicule: Vehicule) => {
+  const handleViewVehicule = (vehicule: Vehicle) => {
     setSelectedVehicule(vehicule);
     setView('detail');
     setMobileMenuOpen(false);
   };
 
-  const handleEditVehicule = (vehicule: Vehicule) => {
+  const handleEditVehicule = (vehicule: Vehicle) => {
     setEditingVehicule(vehicule);
     setView('add');
     setMobileMenuOpen(false);
@@ -266,7 +266,7 @@ export default function Home() {
           <Dashboard vehicules={vehicules} onViewVehicule={handleViewVehicule} />
         )}
         {view === 'list' && (
-          <VehiculeList
+          <VehicleList
             vehicules={vehicules}
             onViewVehicule={handleViewVehicule}
             onEditVehicule={handleEditVehicule}
@@ -278,7 +278,7 @@ export default function Home() {
           />
         )}
         {view === 'add' && (
-          <VehiculeForm
+          <VehicleForm
             vehicule={editingVehicule}
             onSave={editingVehicule ? handleUpdateVehicule : handleAddVehicule}
             onCancel={() => {
@@ -288,7 +288,7 @@ export default function Home() {
           />
         )}
         {view === 'detail' && selectedVehicule && (
-          <VehiculeDetail
+          <VehicleDetail
             vehicule={selectedVehicule}
             onBack={() => setView('list')}
             onAddRecette={handleAddRecette}

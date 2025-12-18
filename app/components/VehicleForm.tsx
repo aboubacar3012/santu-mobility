@@ -1,18 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Vehicule } from '../page';
+import { Vehicle } from '../page';
 
-type VehiculeFormProps = {
-  vehicule: Vehicule | null;
-  onSave: (vehicule: Vehicule) => void;
+type VehicleFormProps = {
+  vehicule: Vehicle | null;
+  onSave: (vehicule: Vehicle) => void;
   onCancel: () => void;
 };
 
-export default function VehiculeForm({ vehicule, onSave, onCancel }: VehiculeFormProps) {
+export default function VehicleForm({ vehicule, onSave, onCancel }: VehicleFormProps) {
   const [formData, setFormData] = useState({
     numero: '',
-    type: 'voiture' as Vehicule['type'],
+    type: 'voiture' as Vehicle['type'],
     marque: '',
     modele: '',
     annee: new Date().getFullYear(),
@@ -41,7 +41,7 @@ export default function VehiculeForm({ vehicule, onSave, onCancel }: VehiculeFor
     if (vehicule) {
       onSave({ ...vehicule, ...formData });
     } else {
-      onSave({ ...formData, id: '', recettes: [], depenses: [] } as Vehicule);
+      onSave({ ...formData, id: '', recettes: [], depenses: [] } as Vehicle);
     }
   };
 
@@ -81,7 +81,7 @@ export default function VehiculeForm({ vehicule, onSave, onCancel }: VehiculeFor
               <select
                 required
                 value={formData.type}
-                onChange={(e) => setFormData({ ...formData, type: e.target.value as Vehicule['type'] })}
+                onChange={(e) => setFormData({ ...formData, type: e.target.value as Vehicle['type'] })}
                 className="w-full px-4 py-3 border-2 border-green-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white text-gray-900 transition-all"
               >
                 <option value="voiture">🚗 Voiture</option>

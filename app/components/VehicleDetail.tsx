@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Vehicule, Recette, Depense } from '../page';
+import { Vehicle, Recette, Depense } from '../page';
 
-type VehiculeDetailProps = {
-  vehicule: Vehicule;
+type VehicleDetailProps = {
+  vehicule: Vehicle;
   onBack: () => void;
   onAddRecette: (vehiculeId: string, recette: Omit<Recette, 'id'>) => void;
   onAddDepense: (vehiculeId: string, depense: Omit<Depense, 'id'>) => void;
@@ -12,7 +12,7 @@ type VehiculeDetailProps = {
   onDeleteDepense: (vehiculeId: string, depenseId: string) => void;
 };
 
-const getTypeIcon = (type: Vehicule['type']) => {
+const getTypeIcon = (type: Vehicle['type']) => {
   switch (type) {
     case 'voiture': return '🚗';
     case 'moto': return '🏍️';
@@ -21,14 +21,14 @@ const getTypeIcon = (type: Vehicule['type']) => {
   }
 };
 
-export default function VehiculeDetail({
+export default function VehicleDetail({
   vehicule,
   onBack,
   onAddRecette,
   onAddDepense,
   onDeleteRecette,
   onDeleteDepense,
-}: VehiculeDetailProps) {
+}: VehicleDetailProps) {
   const [showRecetteForm, setShowRecetteForm] = useState(false);
   const [showDepenseForm, setShowDepenseForm] = useState(false);
 

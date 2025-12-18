@@ -1,17 +1,17 @@
 'use client';
 
-import { Vehicule } from '../page';
+import { Vehicle } from '../page';
 
 type DashboardProps = {
-  vehicules: Vehicule[];
-  onViewVehicule: (vehicule: Vehicule) => void;
+  vehicules: Vehicle[];
+  onViewVehicule: (vehicule: Vehicle) => void;
 };
 
 export default function Dashboard({ vehicules, onViewVehicule }: DashboardProps) {
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
 
-  const calculateMonthlyBenefit = (vehicule: Vehicule) => {
+  const calculateMonthlyBenefit = (vehicule: Vehicle) => {
     const monthRecettes = vehicule.recettes.filter(r => {
       const date = new Date(r.date);
       return date.getMonth() === currentMonth && date.getFullYear() === currentYear;
